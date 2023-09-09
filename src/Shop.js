@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './state/index';
 
@@ -9,6 +9,8 @@ function Shop() {
     const dispatch = useDispatch();
     // const actions = bindActionCreaters(actionCreators.dispatch);
     const { withdrawMoney, depositMoney } = bindActionCreators(actionCreators, dispatch)
+    const balance = useSelector(state => state.amount)
+
 
     return (
         <div className='container text-center my-5'>
@@ -19,7 +21,7 @@ function Shop() {
             <button className="btn btn-primary mx-3" onClick={() => { dispatch(actionCreators.depositMoney(100)) }} > <strong> + </strong></button> */}
 
             <button className="btn btn-primary mx-3" onClick={() => { withdrawMoney(100) }} > <strong> - </strong> </button>
-            Update Balance
+            Update Balance ({balance})
             <button className="btn btn-primary mx-3" onClick={() => { depositMoney(100) }} > <strong> + </strong></button>
 
 
